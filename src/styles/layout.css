@@ -1,0 +1,105 @@
+/* ── Header ────────────────────────────────────────────────────────────────── */
+.header {
+  background: var(--clr-surface);
+  border-bottom: 1px solid var(--clr-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+}
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+  gap: 1rem;
+}
+.header__logo {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--clr-primary);
+  letter-spacing: -.02em;
+}
+.header__nav {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+}
+.header__nav a {
+  font-size: .9rem;
+  font-weight: 500;
+  color: var(--clr-muted);
+  padding: .3rem .1rem;
+  border-bottom: 2px solid transparent;
+  transition: color var(--transition), border-color var(--transition);
+}
+.header__nav a:hover,
+.header__nav a.active {
+  color: var(--clr-primary);
+  border-bottom-color: var(--clr-primary);
+}
+
+/* Cart button */
+.cart-btn {
+  position: relative;
+  font-size: 1.15rem;
+  padding: .45rem .6rem;
+  border-radius: var(--radius);
+  transition: background var(--transition);
+}
+.cart-btn:hover { background: var(--clr-primary-light); }
+.cart-btn__badge {
+  position: absolute;
+  top: -5px;
+  right: -8px;
+  background: var(--clr-danger);
+  color: #fff;
+  font-size: .62rem;
+  font-weight: 800;
+  min-width: 1.15rem;
+  height: 1.15rem;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 .25rem;
+  line-height: 1;
+  border: 2px solid var(--clr-surface);
+}
+
+/* ── Footer ────────────────────────────────────────────────────────────────── */
+.footer {
+  background: var(--clr-surface);
+  border-top: 1px solid var(--clr-border);
+  padding: 1.75rem 1.5rem;
+  margin-top: auto;
+}
+.footer__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: .875rem;
+  color: var(--clr-muted);
+}
+.footer__logo {
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--clr-primary);
+  letter-spacing: -.01em;
+}
+.footer__links {
+  display: flex;
+  gap: 1.5rem;
+}
+.footer__links a {
+  color: var(--clr-muted);
+  transition: color var(--transition);
+}
+.footer__links a:hover { color: var(--clr-primary); }

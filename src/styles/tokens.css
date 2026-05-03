@@ -1,0 +1,47 @@
+/* ── Design Tokens ─────────────────────────────────────────────────────────── */
+:root {
+  /* Colors */
+  --clr-primary:        #2563eb;
+  --clr-primary-h:      #1d4ed8;
+  --clr-primary-light:  #dbeafe;
+  --clr-danger:         #dc2626;
+  --clr-danger-light:   #fee2e2;
+  --clr-success:        #16a34a;
+  --clr-success-light:  #dcfce7;
+  --clr-warning:        #d97706;
+  --clr-warning-light:  #fef3c7;
+
+  /* Surfaces */
+  --clr-bg:             #f8fafc;
+  --clr-surface:        #ffffff;
+  --clr-surface-2:      #f1f5f9;
+  --clr-border:         #e2e8f0;
+  --clr-border-strong:  #cbd5e1;
+
+  /* Text */
+  --clr-text:           #0f172a;
+  --clr-text-2:         #334155;
+  --clr-muted:          #64748b;
+
+  /* Border radius */
+  --radius-sm:   4px;
+  --radius:      8px;
+  --radius-lg:   12px;
+  --radius-xl:   20px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.05);
+  --shadow:    0 1px 3px rgba(0,0,0,.1),  0 1px 2px rgba(0,0,0,.06);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,.08), 0 2px 4px -2px rgba(0,0,0,.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -4px rgba(0,0,0,.08);
+  --shadow-xl: 0 20px 25px -5px rgba(0,0,0,.12), 0 8px 10px -6px rgba(0,0,0,.08);
+
+  /* Transitions */
+  --transition-fast: 100ms ease;
+  --transition:      180ms ease;
+  --transition-slow: 300ms ease;
+
+  /* Typography */
+  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}

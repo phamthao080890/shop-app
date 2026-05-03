@@ -1,0 +1,144 @@
+/* ── Utilities ─────────────────────────────────────────────────────────────── */
+
+/* Container */
+.container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .4rem;
+  padding: .55rem 1.35rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: .875rem;
+  letter-spacing: .01em;
+  white-space: nowrap;
+  transition:
+    background var(--transition),
+    color var(--transition),
+    border-color var(--transition),
+    box-shadow var(--transition),
+    transform var(--transition-fast);
+}
+.btn:active:not(:disabled) { transform: scale(.98); }
+
+.btn-primary {
+  background: var(--clr-primary);
+  color: #fff;
+  box-shadow: 0 1px 2px rgba(37,99,235,.25);
+}
+.btn-primary:hover { background: var(--clr-primary-h); box-shadow: 0 3px 8px rgba(37,99,235,.35); }
+
+.btn-outline {
+  background: transparent;
+  border: 1.5px solid var(--clr-border-strong);
+  color: var(--clr-text-2);
+}
+.btn-outline:hover {
+  border-color: var(--clr-primary);
+  color: var(--clr-primary);
+  background: var(--clr-primary-light);
+}
+
+.btn-danger { background: var(--clr-danger); color: #fff; }
+.btn-danger:hover { background: #b91c1c; }
+
+.btn-ghost { color: var(--clr-muted); border-radius: var(--radius); }
+.btn-ghost:hover { color: var(--clr-text); background: var(--clr-surface-2); }
+
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+
+/* ── Badges ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: .2rem .6rem;
+  border-radius: var(--radius-full);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.badge-red   { background: var(--clr-danger-light);  color: var(--clr-danger);  }
+.badge-green { background: var(--clr-success-light); color: var(--clr-success); }
+.badge-blue  { background: var(--clr-primary-light); color: var(--clr-primary); }
+.badge-gold  { background: var(--clr-warning-light); color: var(--clr-warning); }
+
+/* ── Card ── */
+.card {
+  background: var(--clr-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--clr-border);
+  overflow: hidden;
+}
+
+/* ── Form ── */
+.form-group { display: flex; flex-direction: column; gap: .4rem; margin-bottom: 1.1rem; }
+.form-group label { font-size: .875rem; font-weight: 600; color: var(--clr-text-2); }
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: .6rem .85rem;
+  border: 1.5px solid var(--clr-border);
+  border-radius: var(--radius);
+  font: inherit;
+  font-size: .9rem;
+  background: var(--clr-surface);
+  color: var(--clr-text);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--clr-primary);
+  box-shadow: 0 0 0 3px rgba(37,99,235,.12);
+}
+.form-error { color: var(--clr-danger); font-size: .8rem; font-weight: 500; }
+
+/* ── Spinner ── */
+.spinner {
+  width: 2.25rem; height: 2.25rem;
+  border: 3px solid var(--clr-border);
+  border-top-color: var(--clr-primary);
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.spinner-wrap { display: flex; justify-content: center; padding: 5rem 0; }
+
+/* ── Pagination ── */
+.pagination {
+  display: flex;
+  gap: .4rem;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
+}
+.pagination button {
+  min-width: 2.25rem;
+  height: 2.25rem;
+  padding: 0 .5rem;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--clr-border);
+  font-weight: 600;
+  font-size: .875rem;
+  color: var(--clr-muted);
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+.pagination button.active {
+  background: var(--clr-primary);
+  color: #fff;
+  border-color: var(--clr-primary);
+  box-shadow: 0 2px 4px rgba(37,99,235,.3);
+}
+.pagination button:hover:not(.active):not(:disabled) {
+  background: var(--clr-primary-light);
+  border-color: var(--clr-primary);
+  color: var(--clr-primary);
+}
+.pagination button:disabled { opacity: .4; cursor: not-allowed; }

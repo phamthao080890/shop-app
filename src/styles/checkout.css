@@ -1,0 +1,654 @@
+/* ── Checkout Page Layout ────────────────────────────────────────────────────── */
+.checkout-page {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--clr-bg), #f8fafc);
+  box-sizing: border-box;
+}
+
+.checkout-page__title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 2.5rem;
+  color: var(--clr-text);
+  text-align: center;
+  position: relative;
+}
+
+.checkout-page__title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--clr-primary), var(--clr-primary-light));
+  border-radius: 2px;
+}
+
+/* White card that wraps each step's form */
+.checkout-card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-xl);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-lg);
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+  animation: slideInUp 0.6s ease-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.checkout-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--clr-primary), var(--clr-primary-light));
+}
+
+@media (max-width: 1024px) {
+  .checkout-page {
+    width: 100%;
+    max-width: 100%;
+    padding: 1.5rem 1rem 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .checkout-page {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 1.5rem 1rem 2rem; /* Increased padding for better breathing room */
+  }
+  .checkout-page__title {
+    font-size: 1.75rem; /* Slightly smaller but still prominent */
+    margin-bottom: 2rem; /* Adjusted spacing */
+  }
+  .checkout-card {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 2rem 1rem; /* Match page padding for symmetry */
+    border-radius: var(--radius-xl);
+    box-sizing: border-box;
+  }
+  .checkout-card::before {
+    height: 4px; /* Restore full height accent bar */
+  }
+  .checkout-card__title {
+    font-size: 1.1rem; /* Slightly larger for mobile */
+    margin-bottom: 1.5rem; /* Better spacing */
+  }
+}
+.checkout-card__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--clr-text);
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid var(--clr-border);
+  position: relative;
+}
+
+.checkout-card__title::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background: var(--clr-primary);
+  border-radius: 1px;
+}
+
+/* Error banner */
+.checkout-error {
+  background: linear-gradient(135deg, var(--clr-danger-light), #fef2f2);
+  color: var(--clr-danger);
+  border: 1px solid var(--clr-danger);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  font-size: .9rem;
+  font-weight: 500;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.1);
+}
+
+.checkout-error::before {
+  content: '⚠️';
+  margin-right: 0.5rem;
+  font-size: 1rem;
+}
+
+/* Checkout action button row */
+.checkout-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--clr-border);
+}
+.checkout-actions .btn {
+  flex: 1;
+  padding: 0.875rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: var(--radius-lg);
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.checkout-actions .btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left var(--transition-slow);
+}
+
+.checkout-actions .btn:hover::before {
+  left: 100%;
+}
+
+@media (max-width: 640px) {
+  .checkout-actions {
+    flex-direction: column;
+    gap: 1rem; /* More space between buttons */
+    margin-top: 3rem; /* More top margin */
+    padding-top: 2rem; /* More top padding */
+  }
+  .checkout-actions .btn {
+    padding: 1.25rem 1.5rem; /* Larger buttons for better touch targets */
+    font-size: 1.1rem; /* Slightly larger font */
+    font-weight: 700; /* Bolder text */
+    width: 100%; /* Full width buttons */
+  }
+}
+
+/* ── Steps Progress Bar ──────────────────────────────────────────────────────── */
+.steps {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  margin-bottom: 3rem;
+  background: var(--clr-surface);
+  border-radius: var(--radius-xl);
+  padding: 2rem 1.5rem;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--clr-border);
+}
+/* Connecting line */
+.steps::before {
+  content: '';
+  position: absolute;
+  top: 3rem;
+  left: calc(16.66% + 1rem);
+  right: calc(16.66% + 1rem);
+  height: 3px;
+  background: linear-gradient(90deg, var(--clr-border), var(--clr-primary-light), var(--clr-border));
+  border-radius: 2px;
+  z-index: 0;
+}
+.step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  position: relative;
+  z-index: 1;
+  padding: 0 1rem; /* Increased padding for full-width layout */
+}
+.step__circle {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: 3px solid var(--clr-border);
+  background: var(--clr-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--clr-muted);
+  transition: all var(--transition);
+  position: relative;
+  box-shadow: var(--shadow-sm);
+}
+
+.step__circle::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: transparent;
+  transition: background var(--transition);
+}
+
+.step.active .step__circle {
+  background: var(--clr-primary);
+  border-color: var(--clr-primary);
+  color: #fff;
+  transform: scale(1.1);
+  box-shadow: 0 0 0 8px var(--clr-primary-light);
+}
+
+.step.active .step__circle::before {
+  background: rgba(37, 99, 235, 0.1);
+}
+
+.step.done .step__circle {
+  background: var(--clr-success);
+  border-color: var(--clr-success);
+  color: #fff;
+  box-shadow: 0 0 0 6px var(--clr-success-light);
+}
+
+.step.done .step__circle::after {
+  content: '✓';
+  position: absolute;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.step__label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--clr-muted);
+  text-align: center;
+  letter-spacing: 0.02em;
+  transition: color var(--transition);
+}
+.step.active .step__label {
+  color: var(--clr-primary);
+  font-weight: 700;
+}
+.step.done .step__label {
+  color: var(--clr-success);
+  font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  .steps {
+    padding: 2rem 0; /* Remove horizontal padding for full width */
+    margin-bottom: 2.5rem; /* More space below */
+    margin-left: -1rem; /* Negative margin to extend full width */
+    margin-right: -1rem; /* Negative margin to extend full width */
+    background: linear-gradient(135deg, var(--clr-surface), #f8fafc); /* Subtle gradient background */
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm); /* Subtle shadow for depth */
+  }
+  .steps::before {
+    top: 3rem; /* Adjusted for new padding */
+    left: calc(16.66% + 1rem); /* Adjust for step padding */
+    right: calc(16.66% + 1rem); /* Adjust for step padding */
+    height: 2px;
+  }
+  .step__circle {
+    width: 2.75rem; /* Slightly larger for better touch targets */
+    height: 2.75rem;
+    font-size: 0.95rem;
+  }
+  .step__label {
+    font-size: 0.85rem; /* Slightly larger for readability */
+    font-weight: 600;
+  }
+}
+
+/* ── Address Form Grid ───────────────────────────────────────────────────────── */
+.address-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 1.5rem;
+  margin-bottom: 1rem;
+}
+.address-grid .form-group {
+  grid-column: 1 / -1;
+  display: block; /* Override flex from utilities.css */
+  margin-bottom: 1.5rem;
+}
+.address-grid .form-group.form-group--half {
+  grid-column: span 1;
+}
+
+.address-grid .form-group label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--clr-text);
+  margin-bottom: 0.5rem;
+  transition: color var(--transition);
+}
+
+.address-grid .form-group input,
+.address-grid .form-group select {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 2px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  font: inherit;
+  font-size: 1rem;
+  background: var(--clr-surface);
+  color: var(--clr-text);
+  transition: all var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.address-grid .form-group input:focus,
+.address-grid .form-group select:focus {
+  outline: none;
+  border-color: var(--clr-primary);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1), var(--shadow);
+  transform: translateY(-1px);
+}
+
+.address-grid .form-group input::placeholder {
+  color: var(--clr-muted);
+  opacity: 0.7;
+}
+
+@media (max-width: 640px) {
+  .address-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem; /* Add small gap between fields */
+  }
+  .address-grid .form-group.form-group--half {
+    grid-column: 1 / -1;
+  }
+  .address-grid .form-group {
+    margin-bottom: 1.5rem; /* More space between form groups */
+  }
+  .address-grid .form-group input,
+  .address-grid .form-group select {
+    padding: 1rem 1.25rem; /* Larger touch targets */
+    font-size: 1rem; /* Ensure readable font size */
+  }
+}
+
+/* ── Payment Options ─────────────────────────────────────────────────────────── */
+.payment-options {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 0;
+}
+.payment-option {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.5rem 1.75rem;
+  border: 2px solid var(--clr-border);
+  border-radius: var(--radius-xl);
+  cursor: pointer;
+  transition: all var(--transition);
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--clr-text-2);
+  background: var(--clr-surface);
+  width: 100%;
+  position: relative;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.payment-option::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.05), transparent);
+  transition: left var(--transition-slow);
+}
+
+.payment-option:hover {
+  border-color: var(--clr-primary);
+  background: linear-gradient(135deg, var(--clr-primary-light), #f0f7ff);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.payment-option:hover::before {
+  left: 100%;
+}
+
+.payment-option--selected {
+  border-color: var(--clr-primary);
+  background: linear-gradient(135deg, var(--clr-primary-light), #e0f0fe);
+  color: var(--clr-text);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15), var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.payment-option input[type="radio"] {
+  accent-color: var(--clr-primary);
+  width: 1.2rem;
+  height: 1.2rem;
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.payment-option__icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+  background: var(--clr-surface-2);
+  border: 1px solid var(--clr-border);
+}
+
+.payment-option:hover .payment-option__icon,
+.payment-option--selected .payment-option__icon {
+  transform: scale(1.1);
+  background: var(--clr-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.payment-option__content {
+  flex: 1;
+}
+
+.payment-option__title {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: var(--clr-text);
+}
+
+.payment-option__description {
+  font-size: 0.9rem;
+  color: var(--clr-muted);
+  line-height: 1.4;
+}
+
+@media (max-width: 640px) {
+  .payment-option {
+    padding: 1.5rem 1rem; /* Match page padding for symmetry */
+    gap: 1.25rem; /* Better spacing */
+    border-radius: var(--radius-xl); /* Keep rounded corners */
+  }
+  .payment-option__icon {
+    width: 3rem; /* Keep larger icons for better visibility */
+    height: 3rem;
+  }
+  .payment-option__title {
+    font-size: 1rem; /* Ensure readable title */
+  }
+  .payment-option__description {
+    font-size: 0.9rem;
+    line-height: 1.5; /* Better line height */
+  }
+}
+
+/* ── Confirm Step ────────────────────────────────────────────────────────────── */
+.confirm-sections {
+  display: grid;
+  gap: 1.5rem;
+}
+.confirm-card {
+  background: linear-gradient(135deg, var(--clr-surface-2), var(--clr-surface));
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem 1.75rem;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition);
+}
+
+.confirm-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.confirm-card__title {
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--clr-muted);
+  margin-bottom: 0.75rem;
+  position: relative;
+}
+
+.confirm-card__title::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 30px;
+  height: 2px;
+  background: var(--clr-primary);
+  border-radius: 1px;
+}
+
+.confirm-card p {
+  font-size: 0.95rem;
+  color: var(--clr-text-2);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.confirm-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--clr-border);
+  font-size: 0.95rem;
+  color: var(--clr-text-2);
+  transition: background var(--transition);
+}
+
+.confirm-item:hover {
+  background: rgba(37, 99, 235, 0.02);
+  border-radius: var(--radius);
+  margin: 0 -0.5rem;
+  padding: 0.75rem 0.5rem;
+}
+
+.confirm-item:last-of-type {
+  border-bottom: none;
+}
+
+.confirm-item__name {
+  flex: 1;
+  font-weight: 500;
+}
+
+.confirm-item__price {
+  font-weight: 700;
+  color: var(--clr-text);
+  font-size: 1rem;
+}
+
+.confirm-item__price-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.25rem;
+}
+
+.confirm-item__original {
+  font-size: 0.85rem;
+  color: var(--clr-muted);
+  text-decoration: line-through;
+}
+
+.confirm-savings {
+  text-align: right;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--clr-success);
+  background: linear-gradient(135deg, var(--clr-success-light), #d1fae5);
+  border-radius: var(--radius-lg);
+  padding: 0.4rem 0.875rem;
+  margin-top: 0.5rem;
+  border: 1px solid var(--clr-success);
+  box-shadow: 0 2px 4px rgba(22, 163, 74, 0.1);
+}
+
+.confirm-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 0 0.5rem;
+  margin-top: 1rem;
+  border-top: 3px solid var(--clr-primary);
+  font-weight: 800;
+  font-size: 1.2rem;
+  background: linear-gradient(135deg, var(--clr-primary-light), #e0f0fe);
+  margin: 1.5rem -1.75rem -1.5rem;
+  padding: 1.5rem 1.75rem;
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+}
+
+.confirm-total__amount {
+  color: var(--clr-primary);
+  font-size: 1.4rem;
+}
+
+@media (max-width: 640px) {
+  .confirm-card {
+    padding: 1.5rem 1rem; /* Match page padding for symmetry */
+    border-radius: var(--radius-xl); /* Keep rounded corners */
+  }
+  .confirm-total {
+    margin: 1.5rem -1rem -1.5rem; /* Match page padding for symmetry */
+    padding: 1.5rem; /* More padding for the total section */
+    font-size: 1.2rem; /* Larger font for total */
+  }
+  .confirm-total__amount {
+    font-size: 1.5rem; /* Larger amount font */
+  }
+  .confirm-item {
+    padding: 1rem 0; /* More padding for items */
+    font-size: 1rem; /* Larger font for items */
+  }
+}
